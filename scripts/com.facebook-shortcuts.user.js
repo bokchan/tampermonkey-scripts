@@ -28,3 +28,10 @@ key('shift+e', function() {
     window.location.href = 'https://www.facebook.com/events';
 });
 
+/**
+ * Shortcut expanding outdated comments
+ */
+key('shift+n', function(){
+    var notifications = document.getElementById("fbNotificationsJewel");
+    notifications.classList.toggle("openToggler");
+});
