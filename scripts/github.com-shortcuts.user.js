@@ -43,6 +43,17 @@ key('g+m', function(){
 
 
 /**
+ * Shortcut for showing closed issues for a milestone
+ */
+key('shift+m', function(){
+    if (repo_url && is_same_url('\/milestone\/[0-9]+') && ! window.location.href.match('closed=1$'))
+    {
+        window.location.href = window.location.href + "?closed=1";
+    }
+});
+
+
+/**
  * Shortcut for navigating to the list of releases
  */
 key('g+r', function(){
