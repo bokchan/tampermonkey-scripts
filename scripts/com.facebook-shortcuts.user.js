@@ -22,7 +22,7 @@ key('shift+m', function() {
 });
 
 /**
- * Goto messages
+ * Goto events
  */
 key('shift+e', function() {
     window.location.href = 'https://www.facebook.com/events';
