@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         inbox google com shortcuts
+// @name         inbox.google.com shortcuts
 // @namespace    https://github.com/bokchan
 // @description  Shortcuts for inbox.google.com
 // @copyright    2018, Andreas Bok Andersen
