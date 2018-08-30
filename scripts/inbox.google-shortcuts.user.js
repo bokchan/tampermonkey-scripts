@@ -21,3 +21,12 @@
 key('g+r', function() {
     window.location.href = 'https://inbox.google.com/reminders?pli=1';
 });
+
+
+/**
+ * Open google contacts in new tab
+ */
+key('shift+C', function() {
+    var contacts = window.open('https://contacts.google.com/', '_blank');
+    contacts.focus();
+});
