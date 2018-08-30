@@ -6,7 +6,6 @@
 // @description  Github custom shortcuts
 // @date         29.08.2018
 // @version      0.0.1
-// @exclude      *
 // @match        https://*.github.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/github.com-shortcuts.js
 // @homepageURL   https://github.com/bokchan/tampermonkey-scripts

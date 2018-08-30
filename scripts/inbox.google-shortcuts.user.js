@@ -5,7 +5,6 @@
 // @copyright    2018, Andreas Bok Andersen
 // @author       Andreas Bok Andersen
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
-// @exclude      *
 // @include      https://inbox.google.com/*
 // @match        https://inbox.google.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/inbox.google-shortcuts.user.js
