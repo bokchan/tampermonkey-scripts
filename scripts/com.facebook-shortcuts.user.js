@@ -20,3 +20,11 @@
 key('shift+m', function() {
     window.location.href = 'https://www.facebook.com/messages/t';
 });
+
+/**
+ * Goto messages
+ */
+key('shift+e', function() {
+    window.location.href = 'https://www.facebook.com/events';
+});
+
