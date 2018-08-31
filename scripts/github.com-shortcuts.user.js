@@ -7,8 +7,8 @@
 // @date         29.08.2018
 // @version      0.0.1
 // @match        https://*.github.com/*
-// @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/github.com-shortcuts.js
-// @homepageURL   https://github.com/bokchan/tampermonkey-scripts
+// @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/github.com-shortcuts.user.js
+// @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportUrl   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @updateURL    https://openuserjs.org/meta/bok_chan/github.com-shortcuts.meta.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js
