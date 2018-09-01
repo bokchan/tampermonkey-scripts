@@ -11,7 +11,7 @@
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportUrl   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @updateURL    https://openuserjs.org/meta/bok_chan/github.com-shortcuts.meta.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js
+// @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // ==/UserScript==
 
 const github_repo_regex = '(https?://github.com/[a-z0-9-]+\/[a-z0-9-]+)';

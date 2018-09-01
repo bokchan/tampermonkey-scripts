@@ -18,7 +18,7 @@
 /**
  * Goto reminders
  */
-key('g r', function() {
+Mousetrap.bind('g r', function() {
     window.location.href = 'https://inbox.google.com/reminders?pli=1';
 });
 
@@ -26,7 +26,7 @@ key('g r', function() {
 /**
  * Open Google contacts in new tab
  */
-key('shift+c', function() {
+Mousetrap.bind('shift+c', function() {
     var contacts = window.open('https://contacts.google.com/', '_blank');
     contacts.focus();
 });
