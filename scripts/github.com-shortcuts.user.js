@@ -43,12 +43,21 @@ Mousetrap.bind('g m', function(){
 
 
 /**
- * Shortcut for showing closed issues for a milestone
+ * Shortcut for toggling closed and open issues for a milestone
  */
 Mousetrap.bind('shift+m', function(){
-    if (repo_url && is_same_url('\/milestone\/[0-9]+') && ! window.location.href.match('closed=1$'))
+    var milestone = is_same_url('(\/milestone\/[0-9]+)');
+    console.log(milestone);
+    if (repo_url && is_same_url('(\/milestone\/[0-9]+)') )
     {
-        window.location.href = window.location.href + "?closed=1";
+        if ( window.location.href.match('closed=1$') )
+        {
+            window.location.href = (window.location.href).replace('?closed=1', '');
+        }
+        else
+        {
+            window.location.href = window.location.href + "?closed=1";
+        }
     }
 });
 
