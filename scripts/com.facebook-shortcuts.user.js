@@ -11,27 +11,27 @@
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportUrl   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @updateURL    https://openuserjs.org/meta/bok_chan/com.facebook-shortcuts.meta.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js
+// @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // ==/UserScript==
 
 /**
  * Goto messages
  */
-key('shift+m', function() {
+Mousetrap.bind('shift+m', function() {
     window.location.href = 'https://www.facebook.com/messages/t';
 });
 
 /**
  * Goto events
  */
-key('shift+e', function() {
+Mousetrap.bind('shift+e', function() {
     window.location.href = 'https://www.facebook.com/events';
 });
 
 /**
- * Shortcut expanding outdated comments
+ * Shortcut toggling notifications jewel
  */
-key('shift+n', function(){
+Mousetrap.bind('shift+n', function(){
     var notifications = document.getElementById("fbNotificationsJewel");
     notifications.classList.toggle("openToggler");
 });

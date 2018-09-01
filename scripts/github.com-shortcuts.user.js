@@ -34,7 +34,7 @@ function is_same_url ( url_suffix )
 /**
  * Shortcut for navigating to the list of milestones
  */
-key('g+m', function(){
+Mousetrap.bind('g m', function(){
     if (repo_url && !is_same_url('/milestones\/?'))
     {
         window.location.href = repo_url[0] + '/milestones/';
@@ -45,7 +45,7 @@ key('g+m', function(){
 /**
  * Shortcut for showing closed issues for a milestone
  */
-key('shift+m', function(){
+Mousetrap.bind('shift+m', function(){
     if (repo_url && is_same_url('\/milestone\/[0-9]+') && ! window.location.href.match('closed=1$'))
     {
         window.location.href = window.location.href + "?closed=1";
@@ -56,7 +56,7 @@ key('shift+m', function(){
 /**
  * Shortcut for navigating to the list of releases
  */
-key('g+r', function(){
+Mousetrap.bind('g r', function(){
     if (repo_url && !is_same_url('/releases\/?'))
     {
         window.location.href = repo_url[0] + '/releases';
@@ -67,7 +67,7 @@ key('g+r', function(){
 /**
  * Shortcut to show closed pull requests
  */
-key('p+shift+c', function(){
+Mousetrap.bind('p shift+c', function(){
     if ( repo_url && ! is_same_url('.+is%3Aclosed.*') )
     {
         window.location.href = repo_url[0] + '/pulls' + '?q=is%3Apr+is%3Aclosed';
@@ -78,7 +78,7 @@ key('p+shift+c', function(){
 /**
  * Shortcut for the list of commits for a pull request
  */
-key('shift+c', function(){
+Mousetrap.bind('shift+c', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
     if (pr_url )
     {
@@ -86,10 +86,11 @@ key('shift+c', function(){
     }
 });
 
+
 /**
  * Shortcut expanding outdated comments
  */
-key('o+e', function(){
+Mousetrap.bind('o e', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
 
     console.log(pr_url);
@@ -107,7 +108,7 @@ key('o+e', function(){
 /**
  * Shortcut collapsing outdated comments
  */
-key('o+c', function(){
+Mousetrap.bind('o c', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
 
     console.log(pr_url);

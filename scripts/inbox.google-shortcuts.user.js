@@ -12,21 +12,21 @@
 // @supportURL   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @version      0.0.1
 // @updateURL    https://openuserjs.org/meta/bok_chan/inbox.google-shortcuts.meta.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/keymaster/1.6.1/keymaster.min.js
+// @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // ==/UserScript==
 
 /**
  * Goto reminders
  */
-key('g+r', function() {
+key('g r', function() {
     window.location.href = 'https://inbox.google.com/reminders?pli=1';
 });
 
 
 /**
- * Open google contacts in new tab
+ * Open Google contacts in new tab
  */
-key('shift+C', function() {
+key('shift+c', function() {
     var contacts = window.open('https://contacts.google.com/', '_blank');
     contacts.focus();
 });
