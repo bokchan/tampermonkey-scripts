@@ -18,7 +18,7 @@
 /**
  * Goto reminders
  */
-Mousetrap.bind('g r', function() {
+Mousetrap.bind('shift+r', function() {
     window.location.href = 'https://inbox.google.com/reminders?pli=1';
 });
 
@@ -59,7 +59,7 @@ Mousetrap.bind('p', function() {
 /**
  * @brief Show category forums
  */
-Mousetrap.bind('g', function() {
+Mousetrap.bind('shift+g', function() {
     window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_group?pli=1';
 });
 
