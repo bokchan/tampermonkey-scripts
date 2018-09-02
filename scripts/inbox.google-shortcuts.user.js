@@ -24,9 +24,49 @@ Mousetrap.bind('g r', function() {
 
 
 /**
- * Open Google contacts in new tab
+ * @brief Open Google contacts in new tab
  */
 Mousetrap.bind('shift+c', function() {
     var contacts = window.open('https://contacts.google.com/', '_blank');
     contacts.focus();
+});
+
+
+/**
+ * @brief Show all mails
+ */
+Mousetrap.bind('a', function() {
+    window.location.href = 'https://inbox.google.com/search/label%3Aall?pli=1';
+});
+
+
+/**
+ * @brief Show category social
+ */
+Mousetrap.bind('s', function() {
+    window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_social?pli=1';
+});
+
+
+/**
+ * @brief Show category promos
+ */
+Mousetrap.bind('p', function() {
+    window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_promo?pli=1';
+});
+
+
+/**
+ * @brief Show category forums
+ */
+Mousetrap.bind('g', function() {
+    window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_group?pli=1';
+});
+
+
+/**
+ * @brief Show category updates
+ */
+Mousetrap.bind('shift+u', function() {
+    window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_pure_notif?pli=1';
 });
