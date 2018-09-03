@@ -12,6 +12,7 @@
 // @supportUrl   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @updateURL    https://openuserjs.org/meta/bok_chan/github.com-shortcuts.meta.js
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/picomodal/3.0.0/picoModal.min.js
 // ==/UserScript==
 
 const github_repo_regex = '(https?://github.com/[a-z0-9-]+\/[a-z0-9-]+)';
@@ -129,4 +130,68 @@ Mousetrap.bind('o c', function(){
             list[i].removeAttribute("open");
         }
     }
+});
+
+
+/**
+ * Show shortcuts
+ */
+Mousetrap.bind('u', function(){
+    console.log('showhelp');
+    var help_content = `
+<style type="text/css">
+#modal_header
+{
+   font-weight: bold;
+}
+.modal_divider
+{
+   width: 20px;
+}
+</style>
+<div>
+    <table id=modal_table>
+        <thead id=modal_header><tr>
+            <td>shortcut</td>
+            <td class="modal_divider"></td>
+            <td>description</td>
+        </tr></thead>
+        <tr>
+            <td><code>g m</code></td>
+            <td class="modal_divider"></td>
+            <td>list milestones</td>
+        </tr>
+        <tr>
+            <td><code>shift+m</code></td>
+            <td class="modal_divider"></td>
+            <td>toggle closed/open milestone issues</td>
+        </tr>
+        <tr>
+            <td><code>g r</code></td>
+            <td class="modal_divider"></td>
+            <td>list releases</td>
+        </tr>
+        <tr>
+            <td><code>g shift+c</code></td>
+            <td class="modal_divider"></td>
+            <td>list closed pull requests</td>
+        </tr>
+        <tr>
+            <td><code>shift+c</code></td>
+            <td class="modal_divider"></td>
+            <td>list commits on PR</td>
+        </tr>
+        <tr>
+            <td><code>o e</code></td>
+            <td class="modal_divider"></td>
+            <td>expand outdated PR comments</td>
+        </tr>
+        <tr>
+            <td><code>shift+c</code></td>
+            <td class="modal_divider"></td>
+            <td>collapse outdated PR comments</td>
+        </tr>
+    </table>
+</div>`;
+    picoModal(help_content).show();
 });
