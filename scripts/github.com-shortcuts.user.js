@@ -136,8 +136,7 @@ Mousetrap.bind('o c', function(){
 /**
  * Show shortcuts
  */
-Mousetrap.bind('u', function(){
-    console.log('showhelp');
+Mousetrap.bind('x', function(){
     var help_content = `
 <style type="text/css">
 #modal_header
