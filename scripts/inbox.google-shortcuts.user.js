@@ -8,12 +8,17 @@
 // @include      https://inbox.google.com/*
 // @match        https://inbox.google.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/inbox.google-shortcuts.user.js
+// @updateURL    https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/inbox.google-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportURL   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @version      0.0.1
-// @updateURL    https://openuserjs.org/meta/bok_chan/inbox.google-shortcuts.meta.js
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // ==/UserScript==
+
+/**
+ * @brief Maybe not use this as updateURL
+ * @updateURL    https://openuserjs.org/meta/bok_chan/inbox.google-shortcuts.meta.js
+ */
 
 /**
  * Goto reminders
