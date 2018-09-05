@@ -13,6 +13,7 @@
 // @supportURL   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @version      0.0.1
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
+// @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
 // ==/UserScript==
 
 /**
@@ -74,4 +75,20 @@ Mousetrap.bind('shift+g', function() {
  */
 Mousetrap.bind('shift+u', function() {
     window.location.href = 'https://inbox.google.com/cluster/%23%5Esmartlabel_pure_notif?pli=1';
+});
+
+var shortcuts = [
+['Goto reminders', 'shift+r'],
+['Open Google contacts in new tab', 'shift+c'],
+['Show all mails', 'a'],
+['Show category social', 's'],
+['Show category promos', 'p'],
+['Show category forums', 'shift+g'],
+['Show category updates', 'shift+u'],
+];
+
+var help_content = create_shortcut_help(shortcuts);
+
+Mousetrap.bind('z', function(){
+    picoModal(help_content).show();
 });
