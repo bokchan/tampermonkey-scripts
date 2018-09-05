@@ -13,6 +13,7 @@
 // @updateURL    https://openuserjs.org/meta/bok_chan/github.com-shortcuts.meta.js
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/picomodal/3.0.0/picoModal.min.js
+// @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
 // ==/UserScript==
 
 const github_repo_regex = '(https?://github.com/[a-z0-9-]+\/[a-z0-9-]+)';
@@ -33,7 +34,7 @@ function is_same_url ( url_suffix )
 
 
 /**
- * Shortcut for navigating to the list of milestones
+ * @brief Shortcut for navigating to the list of milestones
  */
 Mousetrap.bind('g m', function(){
     if (repo_url && !is_same_url('/milestones\/?'))
@@ -44,7 +45,7 @@ Mousetrap.bind('g m', function(){
 
 
 /**
- * Shortcut for toggling closed and open issues for a milestone
+ * @brief Shortcut for toggling closed and open issues for a milestone
  */
 Mousetrap.bind('shift+m', function(){
     var milestone = is_same_url('(\/milestone\/[0-9]+)');
@@ -64,7 +65,7 @@ Mousetrap.bind('shift+m', function(){
 
 
 /**
- * Shortcut for navigating to the list of releases
+ * @brief Shortcut for navigating to the list of releases
  */
 Mousetrap.bind('g r', function(){
     if (repo_url && !is_same_url('/releases\/?'))
@@ -75,7 +76,7 @@ Mousetrap.bind('g r', function(){
 
 
 /**
- * Shortcut to show closed pull requests
+ * @brief Shortcut to show closed pull requests
  */
 Mousetrap.bind('p shift+c', function(){
     if ( repo_url && ! is_same_url('.+is%3Aclosed.*') )
@@ -86,7 +87,7 @@ Mousetrap.bind('p shift+c', function(){
 
 
 /**
- * Shortcut for the list of commits for a pull request
+ * @brief Shortcut for the list of commits for a pull request
  */
 Mousetrap.bind('shift+c', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
@@ -98,7 +99,7 @@ Mousetrap.bind('shift+c', function(){
 
 
 /**
- * Shortcut expanding outdated comments
+ * @brief Shortcut expanding outdated comments
  */
 Mousetrap.bind('o e', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
@@ -116,7 +117,7 @@ Mousetrap.bind('o e', function(){
 
 
 /**
- * Shortcut collapsing outdated comments
+ * @brief Shortcut collapsing outdated comments
  */
 Mousetrap.bind('o c', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
@@ -132,65 +133,21 @@ Mousetrap.bind('o c', function(){
     }
 });
 
+var shortcuts = [
+['list milestones', 'g m'],
+['toggle closed/open milestone issues', 'shift+m'],
+['list releases', 'g r'],
+['list closed pull requests', 'g shift+c'],
+['list commits on PR', 'shift+c'],
+['expand outdated PR comments', 'o e'],
+['collapse outdated PR comments', 'shift+c']
+];
+
+var help_content = create_shortcut_help(shortcuts);
 
 /**
- * Show shortcuts
- */
+* Show shortcuts
+*/
 Mousetrap.bind('z', function(){
-    var help_content = `
-<style type="text/css">
-#modal_header
-{
-   font-weight: bold;
-}
-.modal_divider
-{
-   width: 20px;
-}
-</style>
-<div>
-    <table id=modal_table>
-        <thead id=modal_header><tr>
-            <td>shortcut</td>
-            <td class="modal_divider"></td>
-            <td>description</td>
-        </tr></thead>
-        <tr>
-            <td><code>g m</code></td>
-            <td class="modal_divider"></td>
-            <td>list milestones</td>
-        </tr>
-        <tr>
-            <td><code>shift+m</code></td>
-            <td class="modal_divider"></td>
-            <td>toggle closed/open milestone issues</td>
-        </tr>
-        <tr>
-            <td><code>g r</code></td>
-            <td class="modal_divider"></td>
-            <td>list releases</td>
-        </tr>
-        <tr>
-            <td><code>g shift+c</code></td>
-            <td class="modal_divider"></td>
-            <td>list closed pull requests</td>
-        </tr>
-        <tr>
-            <td><code>shift+c</code></td>
-            <td class="modal_divider"></td>
-            <td>list commits on PR</td>
-        </tr>
-        <tr>
-            <td><code>o e</code></td>
-            <td class="modal_divider"></td>
-            <td>expand outdated PR comments</td>
-        </tr>
-        <tr>
-            <td><code>shift+c</code></td>
-            <td class="modal_divider"></td>
-            <td>collapse outdated PR comments</td>
-        </tr>
-    </table>
-</div>`;
     picoModal(help_content).show();
 });
