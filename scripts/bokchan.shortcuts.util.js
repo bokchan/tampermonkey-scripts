@@ -1,7 +1,3 @@
-var picoModalScript = document.createElement('script');
-picoModalScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/picomodal/3.0.0/picoModal.min.js';
-document.head.appendChild(picoModalScript);
-
 var help_content_style = `
 <style type="text/css">
 #modal_header
@@ -24,6 +20,7 @@ width: 20px;
  */
 function create_shortcut_help ( shortcuts )
 {
+    console.log(shortcuts);
 var help_content = `
 <div>
     <table id=modal_table>
