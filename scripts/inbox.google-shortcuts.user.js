@@ -13,6 +13,7 @@
 // @supportURL   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @version      0.0.1
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/picomodal/3.0.0/picoModal.min.js
 // @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
 // ==/UserScript==
 
