@@ -90,6 +90,6 @@ var shortcuts = [
 
 var help_content = create_shortcut_help(shortcuts);
 
-Mousetrap.bind('z', function(){
+Mousetrap.bind('shift+i', function(){
     picoModal(help_content).show();
 });
