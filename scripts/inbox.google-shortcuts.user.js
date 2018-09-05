@@ -8,7 +8,7 @@
 // @include      https://inbox.google.com/*
 // @match        https://inbox.google.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/inbox.google-shortcuts.user.js
-// @updateURL    https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/inbox.google-shortcuts.user.js
+// @updateURL    https://openuserjs.org/meta/bok_chan/inbox.google-shortcuts.meta.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportURL   https://github.com/bokchan/tampermonkey-scripts/wiki
 // @version      0.0.1
