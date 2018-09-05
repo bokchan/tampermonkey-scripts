@@ -10,17 +10,16 @@ width: 20px;
 }
 </style>
 `
-
 /**
- * @brief Create help modal for a list of shortcuts
- * @details
- *
- * @param shortcuts array of shortcuts
- * @return help content formatted as html
- */
+* @brief Create help modal for a list of shortcuts
+* @details
+*
+* @param shortcuts array of shortcuts
+* @return help content formatted as html
+*/
 function create_shortcut_help ( shortcuts )
 {
-    console.log(shortcuts);
+console.log(shortcuts);
 var help_content = `
 <div>
     <table id=modal_table>
@@ -37,12 +36,12 @@ var help_content = `
             <td class="modal_divider"></td>
             <td>` + e[0] + `</td>
         </tr>
-        `)
-        };
+        `);
+        });
         help_content += `
     </table>
 </div>
-`
-
+`;
+console.log(help_content);
 return help_content;
 };
