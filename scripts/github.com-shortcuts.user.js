@@ -148,6 +148,6 @@ var help_content = create_shortcut_help(shortcuts);
 /**
 * Show shortcuts
 */
-Mousetrap.bind('z', function(){
+Mousetrap.bind('i', function(){
     picoModal(help_content).show();
 });
