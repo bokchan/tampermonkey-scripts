@@ -133,6 +133,53 @@ Mousetrap.bind('o c', function(){
     }
 });
 
+
+/**
+ * @brief Shortcut for navigating to next page
+ */
+Mousetrap.bind('o n', function(){
+    var next_page = document.getElementsByClassName('next_page');
+    if (next_page && ! next_page[0].classList.contains('disabled'))
+        next_page[0].click();
+});
+
+
+/**
+ * @brief Shortcut for navigating to previous page
+ */
+Mousetrap.bind('o p', function(){
+    var previous_page = document.getElementsByClassName('previous_page');
+    if (previous_page && ! previous_page[0].classList.contains('disabled'))
+        previous_page[0].click();
+});
+
+
+/**
+ * @brief Shortcut for navigating to the PR Conversations tab
+ */
+
+Mousetrap.bind('shift+1', function(){
+    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
+    if (pr_url)
+    {
+        window.location.href = repo_url[0] + pr_url[0];
+    }
+});
+
+
+/**
+ * @brief Shortcut for navigating to the PR "Files changed" tab
+ */
+Mousetrap.bind('shift+4', function(){
+    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
+    if (pr_url)
+    {
+        window.location.href = repo_url[0] + pr_url[0] + '/files';
+    }
+});
+
+
+
 var shortcuts = [
 ['list milestones', 'g m'],
 ['toggle closed/open milestone issues', 'shift+m'],
@@ -140,7 +187,11 @@ var shortcuts = [
 ['list closed pull requests', 'g shift+c'],
 ['list commits on PR', 'shift+c'],
 ['expand outdated PR comments', 'o e'],
-['collapse outdated PR comments', 'shift+c']
+['collapse outdated PR comments', 'o c'],
+['goto next page', 'o n'],
+['goto next previous', 'o p'],
+['goto PR "Conversations" tab', 'shift+1'],
+['goto PR "Files changed"', 'shift+4']
 ];
 
 var help_content = create_shortcut_help(shortcuts);
