@@ -179,6 +179,21 @@ Mousetrap.bind('shift+4', function(){
 });
 
 
+/**
+ * @brief Sets the focus on the sub search input on the issues and pull requests
+ *        listing page
+ */
+Mousetrap.bind('ctrl ctrl', function () {
+    const the_url = is_same_url('/(pull|issues)/?$');
+    if ( the_url )
+    {
+        var subnav_search = document.querySelector(".subnav-search input[type='text']");
+        var curr_search = subnav_search.getAttribute('value');
+        subnav_search.focus();
+        setCaretPosition(subnav_search, curr_search.length);
+    }
+});
+
 
 var shortcuts = [
 ['list milestones', 'g m'],
@@ -191,7 +206,8 @@ var shortcuts = [
 ['goto next page', 'o n'],
 ['goto next previous', 'o p'],
 ['goto PR "Conversations" tab', 'shift+1'],
-['goto PR "Files changed"', 'shift+4']
+['goto PR "Files changed"', 'shift+4'],
+['focus on sub search field on PR and Issues listing', 'ctrl ctrl']
 ];
 
 var help_content = create_shortcut_help(shortcuts);

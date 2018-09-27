@@ -23,3 +23,24 @@ function create_shortcut_help(shortcuts) {
 
 return help_content;
 }
+
+/**
+ * Sets the caret position in a text input
+ *
+ * @param      elem      The element
+ * @param      caretPos  The length of the current value of elem
+ */
+function setCaretPosition(elem, caretPos) {
+    var range;
+
+    if (elem.createTextRange) {
+        range = elem.createTextRange();
+        range.move('character', caretPos);
+        range.select();
+    } else {
+        elem.focus();
+        if (elem.selectionStart !== undefined) {
+            elem.setSelectionRange(caretPos, caretPos);
+        }
+    }
+}
