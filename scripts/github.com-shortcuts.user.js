@@ -89,7 +89,7 @@ Mousetrap.bind('p shift+c', function(){
 /**
  * @brief Shortcut for the list of commits for a pull request
  */
-Mousetrap.bind('shift+c', function(){
+Mousetrap.bind('shift+2', function(){
     const pr_url = window.location.href.match('(/pull\/[0-9]+)');
     if (pr_url )
     {
@@ -185,7 +185,7 @@ var shortcuts = [
 ['toggle closed/open milestone issues', 'shift+m'],
 ['list releases', 'g r'],
 ['list closed pull requests', 'g shift+c'],
-['list commits on PR', 'shift+c'],
+['list commits on PR', 'shift+2'],
 ['expand outdated PR comments', 'o e'],
 ['collapse outdated PR comments', 'o c'],
 ['goto next page', 'o n'],
