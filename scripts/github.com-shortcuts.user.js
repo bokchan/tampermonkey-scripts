@@ -184,7 +184,7 @@ Mousetrap.bind('shift+4', function(){
  *        listing page
  */
 Mousetrap.bind('ctrl ctrl', function () {
-    const the_url = is_same_url('/(pull|issues)/?$');
+    const the_url = is_same_url('/(pull|issues)(.*q=.*|/?$)');
     if ( the_url )
     {
         var subnav_search = document.querySelector(".subnav-search input[type='text']");
