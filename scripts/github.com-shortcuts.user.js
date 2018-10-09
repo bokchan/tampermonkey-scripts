@@ -78,7 +78,7 @@ Mousetrap.bind('g r', function(){
 /**
  * @brief Shortcut to show closed pull requests
  */
-Mousetrap.bind('p shift+c', function(){
+Mousetrap.bind('g shift+c', function(){
     if ( repo_url && ! is_same_url('.+is%3Aclosed.*') )
     {
         window.location.href = repo_url[0] + '/pulls' + '?q=is%3Apr+is%3Aclosed';
