@@ -10,7 +10,7 @@
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
 // @supportUrl   https://github.com/bokchan/tampermonkey-scripts/wiki
-// @updateURL    https://openuserjs.org/meta/bok_chan/github.com-shortcuts.meta.js
+// @updateURL    https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.meta.js
 // @require      https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/picomodal/3.0.0/picoModal.min.js
 // @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
