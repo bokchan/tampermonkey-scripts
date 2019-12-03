@@ -5,7 +5,7 @@
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
 // @date         03.12.2019
-// @version      0.0.2
+// @version      0.0.3
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -71,19 +71,18 @@ Mousetrap.bind('shift+2', function () {
  *        listing page
  */
 Mousetrap.bind('b f', function () {
-    const the_url = is_same_url('/(merge_requests|issues|boards)');
-    if (the_url) {
-        var subnav_search = document.querySelector("input[class='form-control filtered-search']");
+    var subnav_search = document.querySelector("input[class='form-control filtered-search']");
+    if (subnav_search != null) {
         subnav_search.focus();
     }
 });
 
 
 var shortcuts = [
-    ['Discussion tab', 'shift+1'], 
-    ['Commits tab', 'shift+2'], 
-    ['Changes tab', 'shift+4'], 
-    ['Focus filtered search', 'b f'],    
+    ['Discussion tab', 'shift+1'],
+    ['Commits tab', 'shift+2'],
+    ['Changes tab', 'shift+4'],
+    ['Focus filtered search', 'b f'],
 ]
 
 var help_content = create_shortcut_help(shortcuts);
@@ -91,6 +90,6 @@ var help_content = create_shortcut_help(shortcuts);
 /**
 * Show shortcuts
 */
-Mousetrap.bind('shift+i', function(){
+Mousetrap.bind('shift+h', function(){
     picoModal(help_content).show();
 });
