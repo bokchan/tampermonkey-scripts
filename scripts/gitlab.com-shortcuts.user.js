@@ -27,9 +27,8 @@ const repo_url = window.location.href.match(repo_regex);
  *                          against
  * @return     {boolean}    True if same url, False otherwise.
  */
-function is_same_url ( url_suffix )
-{
-    return window.location.href.match(repo_url[0] + url_suffix );
+function is_same_url(url_suffix) {
+    return window.location.href.match(repo_url[0] + url_suffix);
 }
 
 
@@ -37,10 +36,9 @@ function is_same_url ( url_suffix )
 /**
  * @brief Shortcut for the list of commits for a pull request
  */
-Mousetrap.bind('shift+1', function(){
+Mousetrap.bind('shift+1', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url)
-    {
+    if (pr_url) {
         document.querySelector('.notes-tab a').click()
     }
 });
@@ -49,10 +47,9 @@ Mousetrap.bind('shift+1', function(){
 /**
  * @brief Shortcut for the list of commits for a pull request
  */
-Mousetrap.bind('shift+4', function(){
+Mousetrap.bind('shift+4', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url)
-    {
+    if (pr_url) {
         document.querySelector('.diffs-tab a').click()
     }
 });
@@ -61,10 +58,9 @@ Mousetrap.bind('shift+4', function(){
 /**
  * @brief Shortcut for the list of commits for a pull request
  */
-Mousetrap.bind('shift+2', function(){
+Mousetrap.bind('shift+2', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url)
-    {
+    if (pr_url) {
         document.querySelector('.commits-tab a').click()
     }
 });
@@ -76,8 +72,7 @@ Mousetrap.bind('shift+2', function(){
  */
 Mousetrap.bind('b f', function () {
     const the_url = is_same_url('/(merge_requests|issues|boards)');
-    if ( the_url )
-    {
+    if (the_url) {
         var subnav_search = document.querySelector("input[class='form-control filtered-search']");
         subnav_search.focus();
     }
