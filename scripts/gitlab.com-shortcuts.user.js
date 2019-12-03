@@ -75,8 +75,7 @@ Mousetrap.bind('shift+2', function(){
  *        listing page
  */
 Mousetrap.bind('b f', function () {
-    const the_url = is_same_url('/(merge_requests|issues)');
-    console.log(the_url)
+    const the_url = is_same_url('/(merge_requests|issues|boards)');
     if ( the_url )
     {
         var subnav_search = document.querySelector("input[class='form-control filtered-search']");
