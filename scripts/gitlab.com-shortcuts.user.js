@@ -70,7 +70,7 @@ Mousetrap.bind('shift+2', function () {
  * @brief Sets the focus on the sub search input on the issues and pull requests
  *        listing page
  */
-Mousetrap.bind('b f', function () {
+Mousetrap.bind('f', function () {
     var subnav_search = document.querySelector("input[class='form-control filtered-search']");
     if (subnav_search != null) {
         subnav_search.focus();
@@ -82,7 +82,7 @@ var shortcuts = [
     ['Discussion tab', 'shift+1'],
     ['Commits tab', 'shift+2'],
     ['Changes tab', 'shift+4'],
-    ['Focus filtered search', 'b f'],
+    ['Focus filtered search', 'f'],
 ]
 
 var help_content = create_shortcut_help(shortcuts);
