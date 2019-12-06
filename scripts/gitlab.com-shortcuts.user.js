@@ -32,9 +32,8 @@ function is_same_url(url_suffix) {
 }
 
 
-
 /**
- * @brief Switch to discussion tab on merge requests
+ * @brief Switch to 'discussion' tab on merge requests
  */
 Mousetrap.bind('shift+1', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
@@ -45,18 +44,7 @@ Mousetrap.bind('shift+1', function () {
 
 
 /**
- * @brief Switch to changes tab on merge requests
- */
-Mousetrap.bind('shift+4', function () {
-    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url) {
-        document.querySelector('.diffs-tab a').click()
-    }
-});
-
-
-/**
- * @brief Switch to the commits tab on merge requests
+ * @brief Switch to the 'commits' tab on merge requests
  */
 Mousetrap.bind('shift+2', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
@@ -72,6 +60,16 @@ Mousetrap.bind('shift+3', function () {
     const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
     if (pr_url) {
         document.querySelector('.pipelines-tab a').click()
+    }
+});
+
+/**
+ * @brief Switch to 'changes' tab on merge requests
+ */
+Mousetrap.bind('shift+4', function () {
+    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
+    if (pr_url) {
+        document.querySelector('.diffs-tab a').click()
     }
 });
 
@@ -101,6 +99,6 @@ var help_content = create_shortcut_help(shortcuts);
 /**
 * Show shortcuts
 */
-Mousetrap.bind('shift+h', function(){
+Mousetrap.bind('shift+h', function () {
     picoModal(help_content).show();
 });
