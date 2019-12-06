@@ -5,7 +5,7 @@
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
 // @date         06.12.2019
-// @version      0.0.5
+// @version      0.0.6
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -16,9 +16,8 @@
 // @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
 // ==/UserScript==
 
-const repo_regex = '(https?:\/\/gitlab.com\/[^/]+\/[^/]+)';
+const repo_regex = "(https?://gitlab.com/[^/]+/[^/]+)";
 const repo_url = window.location.href.match(repo_regex);
-
 
 /**
  * Util function to check if the redirect url is equal to the current url
@@ -28,77 +27,73 @@ const repo_url = window.location.href.match(repo_regex);
  * @return     {boolean}    True if same url, False otherwise.
  */
 function is_same_url(url_suffix) {
-    return window.location.href.match(repo_url[0] + url_suffix);
+  return window.location.href.match(repo_url[0] + url_suffix);
 }
 
+function match_url(url) {
+  return window.location.href.match(url);
+}
+
+function switch_tab(tab) {
+  if (match_url("(/merge_requests/[0-9]+)")) {
+    document.querySelector(tab.concat(" a")).click();
+  }
+}
 
 /**
  * @brief Switch to 'discussion' tab on merge requests
  */
-Mousetrap.bind('shift+1', function () {
-    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url) {
-        document.querySelector('.notes-tab a').click()
-    }
+Mousetrap.bind("shift+1", function() {
+  switch_tab(".notes-tab");
 });
-
 
 /**
  * @brief Switch to the 'commits' tab on merge requests
  */
-Mousetrap.bind('shift+2', function () {
-    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url) {
-        document.querySelector('.commits-tab a').click()
-    }
+Mousetrap.bind("shift+2", function() {
+  switch_tab(".commits-tab");
 });
 
 /**
  * @brief Switch to the 'pipelines' tab on merge requests
  */
-Mousetrap.bind('shift+3', function () {
-    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url) {
-        document.querySelector('.pipelines-tab a').click()
-    }
+Mousetrap.bind("shift+3", function() {
+  switch_tab(".pipelines-tab");
 });
 
 /**
  * @brief Switch to 'changes' tab on merge requests
  */
-Mousetrap.bind('shift+4', function () {
-    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
-    if (pr_url) {
-        document.querySelector('.diffs-tab a').click()
-    }
+Mousetrap.bind("shift+4", function() {
+  switch_tab(".diffs-tab");
 });
-
 
 /**
  * @brief Sets the focus on the sub search input on the issues and pull requests
  *        listing page
  */
-Mousetrap.bind('f', function () {
-    var subnav_search = document.querySelector("input[class='form-control filtered-search']");
-    if (subnav_search != null) {
-        subnav_search.focus();
-    }
+Mousetrap.bind("f", function() {
+  var subnav_search = document.querySelector(
+    "input[class='form-control filtered-search']"
+  );
+  if (subnav_search != null) {
+    subnav_search.focus();
+  }
 });
 
-
 var shortcuts = [
-    ['Discussion tab', 'shift+1'],
-    ['Commits tab', 'shift+2'],
-    ['Pipelines tab', 'shift+3'],
-    ['Changes tab', 'shift+4'],
-    ['Focus filtered search', 'f'],
-]
+  ["Discussion tab", "shift+1"],
+  ["Commits tab", "shift+2"],
+  ["Pipelines tab", "shift+3"],
+  ["Changes tab", "shift+4"],
+  ["Focus filtered search", "f"]
+];
 
 var help_content = create_shortcut_help(shortcuts);
 
 /**
-* Show shortcuts
-*/
-Mousetrap.bind('shift+h', function () {
-    picoModal(help_content).show();
+ * Show shortcuts
+ */
+Mousetrap.bind("shift+h", function() {
+  picoModal(help_content).show();
 });
