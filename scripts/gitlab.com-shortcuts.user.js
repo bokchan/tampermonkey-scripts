@@ -65,6 +65,16 @@ Mousetrap.bind('shift+2', function () {
     }
 });
 
+/**
+ * @brief Switch to the 'pipelines' tab on merge requests
+ */
+Mousetrap.bind('shift+3', function () {
+    const pr_url = window.location.href.match('(/merge_requests\/[0-9]+)');
+    if (pr_url) {
+        document.querySelector('.pipelines-tab a').click()
+    }
+});
+
 
 /**
  * @brief Sets the focus on the sub search input on the issues and pull requests
@@ -81,6 +91,7 @@ Mousetrap.bind('f', function () {
 var shortcuts = [
     ['Discussion tab', 'shift+1'],
     ['Commits tab', 'shift+2'],
+    ['Pipelines tab', 'shift+3'],
     ['Changes tab', 'shift+4'],
     ['Focus filtered search', 'f'],
 ]
