@@ -17,6 +17,8 @@
 // ==/UserScript==
 
 const repo_regex = "(https?://gitlab.com/[^/]+/[^/]+)";
+const merge_request_regex = "(/merge_requests/[0-9]+)"
+const merge_request_list_regex = "/merge_requests(\\?scope=.+)?$"
 const repo_url = window.location.href.match(repo_regex);
 
 /**
@@ -34,9 +36,20 @@ function match_url(url) {
   return window.location.href.match(url);
 }
 
-function switch_tab(tab) {
-  if (match_url("(/merge_requests/[0-9]+)")) {
-    document.querySelector(tab.concat(" a")).click();
+function click_element(selector) {
+  var el = document.querySelector(selector)
+  if (el) { el.click(); }
+}
+
+function handle_shortcut(url, selector) {
+  if (match_url(url)) {
+    click_element(selector)
+  }
+}
+
+function handle_shortcut_multiple(urls_selectors) {
+  for (url_selector of urls_selectors) {
+    if (handle_shortcut(url_selector[0], url_selector[1])) break;
   }
 }
 
@@ -44,28 +57,40 @@ function switch_tab(tab) {
  * @brief Switch to 'discussion' tab on merge requests
  */
 Mousetrap.bind("shift+1", function() {
-  switch_tab(".notes-tab");
+  handle_shortcut_multiple([
+    [merge_request_regex, ".notes-tab a"],
+    [merge_request_list_regex, "#state-opened"],
+  ])
 });
 
 /**
  * @brief Switch to the 'commits' tab on merge requests
  */
 Mousetrap.bind("shift+2", function() {
-  switch_tab(".commits-tab");
+  handle_shortcut_multiple([
+    [merge_request_regex, ".commits-tab a"],
+    [merge_request_list_regex, "#state-merged"],
+  ]);
 });
 
 /**
  * @brief Switch to the 'pipelines' tab on merge requests
  */
 Mousetrap.bind("shift+3", function() {
-  switch_tab(".pipelines-tab");
+  handle_shortcut_multiple([
+    [merge_request_regex, ".pipelines-tab a"],
+    [merge_request_list_regex, '#state-closed'],
+  ]);
 });
 
 /**
  * @brief Switch to 'changes' tab on merge requests
  */
 Mousetrap.bind("shift+4", function() {
-  switch_tab(".diffs-tab");
+  handle_shortcut_multiple([
+    [merge_request_regex, ".diffs-tab a"],
+    [merge_request_list_regex, '#state-all'],
+  ]);
 });
 
 /**
@@ -81,11 +106,19 @@ Mousetrap.bind("f", function() {
   }
 });
 
+/**
+ * @brief Changes to bulk edit mode
+ */
+Mousetrap.bind('shift+e', function () {
+  handle_shortcut(repo_regex, '.js-bulk-update-toggle')
+});
+
 var shortcuts = [
-  ["Discussion tab", "shift+1"],
-  ["Commits tab", "shift+2"],
-  ["Pipelines tab", "shift+3"],
-  ["Changes tab", "shift+4"],
+  ["Discussion| Opened", "shift+1"],
+  ["Commits | Merged", "shift+2"],
+  ["Pipelines | Closed", "shift+3"],
+  ["Changes | All", "shift+4"],
+  ['Edit bulk', 'shift+e'],
   ["Focus filtered search", "f"]
 ];
 
