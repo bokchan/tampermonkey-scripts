@@ -113,6 +113,55 @@ Mousetrap.bind('shift+e', function () {
   handle_shortcut(repo_regex, '.js-bulk-update-toggle')
 });
 
+/**
+ * Navigate a list with shortcut keys
+ *
+ * 'j': select next item
+ * 'k': select previous item
+ * 'o': open the selected item in a new tab
+ *
+ * @param {Event} e
+ */
+Mousetrap.bind(['j', 'k', 'o'],
+  function (e) {
+    const contentList = document.querySelector('ul.content-list')
+
+    if (contentList) {
+      var selectedItem = null
+      var nextSelected = contentList.firstElementChild
+      selectedItem = contentList.querySelector('li.selected-item')
+
+      if (selectedItem) {
+        switch (e.key) {
+          case 'k':
+            nextSelected = selectedItem.previousElementSibling != null
+              ? selectedItem.previousElementSibling : contentList.lastElementChild
+            break
+          case 'j':
+            nextSelected = selectedItem.nextElementSibling != null
+              ? selectedItem.nextElementSibling : contentList.firstElementChild
+            break
+          case 'o':
+            var link = selectedItem.querySelector('div.issuable-main-info a')
+            window.open(link.href, '_blank')
+            return
+          default:
+            break
+        }
+      }
+
+      if (selectedItem) {
+        selectedItem.classList.remove('selected-item')
+        selectedItem.classList.remove('active')
+      }
+      if (nextSelected) {
+        nextSelected.classList.add('selected-item')
+        nextSelected.classList.add('active')
+      }
+    }
+  }
+)
+
 var shortcuts = [
   ["Discussion| Opened", "shift+1"],
   ["Commits | Merged", "shift+2"],
@@ -121,6 +170,10 @@ var shortcuts = [
   ['Edit bulk', 'shift+e'],
   ["Focus filtered search", "f"]
 ];
+  ['Focus filtered search', 'f'],
+  ['Select next list item', 'j'],
+  ['Select prev list item', 'k'],
+  ['Open selected list item in new tab', 'o']
 
 var help_content = create_shortcut_help(shortcuts);
 
