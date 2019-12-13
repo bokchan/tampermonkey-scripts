@@ -122,7 +122,7 @@ Mousetrap.bind('shift+e', function () {
  *
  * @param {Event} e
  */
-Mousetrap.bind(['j', 'k', 'o'],
+Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
   function (e) {
     const contentList = document.querySelector('ul.content-list')
 
@@ -142,8 +142,10 @@ Mousetrap.bind(['j', 'k', 'o'],
               ? selectedItem.nextElementSibling : contentList.firstElementChild
             break
           case 'o':
+          case 'O':
+            var target = e.shiftKey ? '_blank' : '_self'
             var link = selectedItem.querySelector('div.issuable-main-info a')
-            window.open(link.href, '_blank')
+            window.open(link.href, target)
             return
           default:
             break
