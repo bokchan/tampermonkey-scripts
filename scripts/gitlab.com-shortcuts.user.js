@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         13.12.2019
-// @version      0.0.9
+// @date         04.01.2020
+// @version      0.0.10
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -53,44 +53,19 @@ function handleShortcutMultiple (urlElementSelectorPairs) {
   }
 }
 
-/**
- * @brief Switch to 'discussion' tab on merge requests
- */
-Mousetrap.bind('shift+1', function () {
-  handleShortcutMultiple([
-    [mergeRequestRegex, '.notes-tab a'],
-    [mergeRequestListRegex, '#state-opened']
-  ])
-})
+function switchTab (keyEvent) {
+  let tab_index = keyEvent.keyCode - 48 // make the keycode a zero-indexed value
+  let tab = document.querySelector(`ul.nav-tabs li:nth-child(${tab_index})`)
+  if (tab && tab.classList.contains('active') == false) {
+      tab.querySelector('a').click()
+  }
+}
 
 /**
- * @brief Switch to the 'commits' tab on merge requests
+ * @brief Switch to tab by index
  */
-Mousetrap.bind('shift+2', function () {
-  handleShortcutMultiple([
-    [mergeRequestRegex, '.commits-tab a'],
-    [mergeRequestListRegex, '#state-merged']
-  ])
-})
-
-/**
- * @brief Switch to the 'pipelines' tab on merge requests
- */
-Mousetrap.bind('shift+3', function () {
-  handleShortcutMultiple([
-    [mergeRequestRegex, '.pipelines-tab a'],
-    [mergeRequestListRegex, '#state-closed']
-  ])
-})
-
-/**
- * @brief Switch to 'changes' tab on merge requests
- */
-Mousetrap.bind('shift+4', function () {
-  handleShortcutMultiple([
-    [mergeRequestRegex, '.diffs-tab a'],
-    [mergeRequestListRegex, '#state-all']
-  ])
+Mousetrap.bind(['shift+1', 'shift+2', 'shift+3', 'shift+4'], function(e){
+  switchTab(e)
 })
 
 /**
@@ -165,16 +140,8 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
 )
 
 var shortcuts = [
-  ['<b>Merge request page</b>', ''],
-  ['Discussion', 'shift+1'],
-  ['Commits', 'shift+2'],
-  ['Pipelines', 'shift+3'],
-  ['Changes', 'shift+4'],
-  ['<b>Merge request list page</b>', ''],
-  ['Opened', 'shift+1'],
-  ['Merged', 'shift+2'],
-  ['Closed', 'shift+3'],
-  ['All', 'shift+4'],
+  ['<b>Pages with tabs</b>', ''],
+  ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
   ['Edit bulk', 'shift+e'],
   ['Focus filtered search', 'f'],
