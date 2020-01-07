@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         04.01.2020
-// @version      0.0.10
+// @date         07.01.2020
+// @version      0.0.11
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -17,6 +17,7 @@
 // ==/UserScript==
 
 const repoRegex = '(https?://gitlab.com/[^/]+/[^/]+)';
+const issuePageRegex = '(/issues/[0-9]+)'
 const mergeRequestRegex = '(/merge_requests/[0-9]+)'
 const mergeRequestListRegex = '/merge_requests(\\?scope=.+)?$'
 const repoUrl = window.location.href.match(repoRegex)
@@ -89,6 +90,15 @@ Mousetrap.bind('shift+e', function () {
 })
 
 /**
+ * @brief Edit weight on issues
+ */
+Mousetrap.bind('w', function(){
+  if (currentUrlMatches(issuePageRegex)) {
+    clickElement('a.js-weight-edit-link')
+  }
+})
+
+/**
  * Navigate a list with shortcut keys
  *
  * 'j': select next item
@@ -140,6 +150,8 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
 )
 
 var shortcuts = [
+  ['<b>Issue page</b>', ''],
+  ['Edit weight', 'w']
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
