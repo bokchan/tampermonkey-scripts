@@ -90,6 +90,13 @@ Mousetrap.bind('shift+e', function () {
 })
 
 /**
+ * @brief Toggle the recent searches dropdown
+ */
+Mousetrap.bind('shift+r', function(){
+  clickElement('.filtered-search-history-dropdown-toggle-button')
+})
+
+/**
  * @brief Edit weight on issues
  */
 Mousetrap.bind('w', function(){
