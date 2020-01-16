@@ -158,11 +158,12 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
 
 var shortcuts = [
   ['<b>Issue page</b>', ''],
-  ['Edit weight', 'w']
+  ['Edit weight', 'w'],
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
   ['Edit bulk', 'shift+e'],
+  ['Focus recent searches', 'shift+r'],
   ['Focus filtered search', 'f'],
   ['Select next list item', 'j'],
   ['Select prev list item', 'k'],
