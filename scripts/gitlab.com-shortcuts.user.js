@@ -34,7 +34,7 @@ function isSameUrl (urlSuffix) {
 }
 
 function currentUrlMatches (urlRegex) {
-  return window.location.href.match(urlRegex)
+  return window.location.href.match(urlRegex) != null
 }
 
 function clickElement (selector) {
@@ -136,7 +136,8 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
           case 'o':
           case 'O':
             var target = e.shiftKey ? '_blank' : '_self'
-            var link = selectedItem.querySelector('div.issuable-main-info a')
+            var selector =  currentUrlMatches(mergeRequestRegex + '/commits') ? 'a.commit-row-message' : 'div.issuable-main-info a'
+            var link = selectedItem.querySelector(selector)
             window.open(link.href, target)
             return
           default:
