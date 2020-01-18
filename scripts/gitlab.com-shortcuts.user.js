@@ -229,9 +229,8 @@ var shortcuts = [
   ['Edit bulk', 'shift+e'],
   ['Focus recent searches', 'shift+r'],
   ['Focus filtered search', 'f'],
-  ['Select next list item', 'j'],
-  ['Select prev list item', 'k'],
-  ['Open selected list item in new tab', 'o']
+  ['Select <code>prev/next</code> list item', 'k/j'],
+  ['Open selected list item in <code>same/new</code> tab', 'o/shift+o'],
   ['<b>Merge request commits</b>', ''],
   ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
 ]
