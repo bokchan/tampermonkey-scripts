@@ -18,8 +18,9 @@
 
 const repoRegex = '(https?://gitlab.com/[^/]+/[^/]+)';
 const issuePageRegex = '(/issues/[0-9]+)'
-const mergeRequestRegex = '(/merge_requests/[0-9]+)'
+const mergeRequestRegex = '/merge_requests/([0-9]+)'
 const mergeRequestListRegex = '/merge_requests(\\?scope=.+)?$'
+let mergeRequestCommitListRegex = '/merge_requests/[0-9]+/commits.*'
 const repoUrl = window.location.href.match(repoRegex)
 
 /**
@@ -137,6 +138,9 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
             break
           case 'o':
           case 'O':
+            if (currentUrlMatches(mergeRequestCommitListRegex)) {
+              store_merge_request_commits()
+            }
             var target = e.shiftKey ? '_blank' : '_self'
             var selector = currentUrlMatches(mergeRequestRegex + '/commits') ? 'a.commit-row-message' : 'div.issuable-main-info a'
             var link = selectedItem.querySelector(selector)
@@ -159,6 +163,63 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
   }
 )
 
+function commit_ids_from_dom() {
+  let elems = document.querySelectorAll('a.commit-row-message')
+  let commits = Array.prototype.map.call(elems, function(obj) {
+    let url = obj.getAttribute('href')
+    let query_params = url.slice(url.indexOf('?') + 1)
+    let url_params = new URLSearchParams(query_params)
+    return url_params.get('commit_id')
+  })
+  return commits
+}
+
+function store_merge_request_commits() {
+  let commits = localStorage.getItem('merge_request_commits')
+  let merge_request_id = window.location.href.match(mergeRequestRegex)[1]
+  if (commits == null || merge_request_id != commits['merge_request_id']) {
+    localStorage.setItem('merge_request_commits',
+      JSON.stringify({
+        'commit_ids': commit_ids_from_dom(),
+        'merge_request_id': merge_request_id
+      }))
+  }
+}
+
+Mousetrap.bind(['shift+w', 'shift+e'], function(e) {
+  let merge_request_diffs_url = window.location.href.match(mergeRequestRegex + '/diffs')
+  if (merge_request_diffs_url == null) return
+
+  let merge_request_id = merge_request_diffs_url[1]
+  let search_params = new URLSearchParams(window.location.search.substring(1))
+  let commit_id = search_params.get('commit_id')
+  let commits_list_dict = JSON.parse(localStorage.getItem('merge_request_commits'))
+  if (commits_list_dict['merge_request_id'] != merge_request_id) {
+    localStorage.setItem('merge_request_commits', null)
+    return
+  }
+  let commit_ids = commits_list_dict['commit_ids']
+  let commit_index = commit_ids.indexOf(commit_id)
+  if (commit_index < 0) return
+
+  var commit = null
+  switch (e.key) {
+    case 'W':
+      commit = commit_index > 0 ? commit_ids[commit_index - 1] : null
+      break
+    case 'E':
+      commit = commit_index < commit_ids.length - 1 ? commit_ids[commit_index + 1] : null
+      break
+    default:
+      break
+  }
+
+  if (commit != null) {
+    search_params.set('commit_id', commit)
+    window.open(window.location.pathname + '?' + search_params.toString(), '_self')
+  }
+})
+
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'w'],
@@ -171,6 +232,8 @@ var shortcuts = [
   ['Select next list item', 'j'],
   ['Select prev list item', 'k'],
   ['Open selected list item in new tab', 'o']
+  ['<b>Merge request commits</b>', ''],
+  ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
 ]
 
 var helpContent = create_shortcut_help(shortcuts)
