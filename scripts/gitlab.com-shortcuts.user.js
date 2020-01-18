@@ -29,43 +29,45 @@ const repoUrl = window.location.href.match(repoRegex)
  *                          against
  * @return     {boolean}    True if same url, False otherwise.
  */
-function isSameUrl (urlSuffix) {
+function isSameUrl(urlSuffix) {
   return window.location.href.match(repoUrl[0] + urlSuffix)
 }
 
-function currentUrlMatches (urlRegex) {
+function currentUrlMatches(urlRegex) {
   return window.location.href.match(urlRegex) != null
 }
 
-function clickElement (selector) {
+function clickElement(selector) {
   const el = document.querySelector(selector)
-  if (el) { el.click() }
+  if (el) {
+    el.click()
+  }
 }
 
-function handleShortcut (urlRegex, selector) {
+function handleShortcut(urlRegex, selector) {
   if (currentUrlMatches(urlRegex)) {
     clickElement(selector)
   }
 }
 
-function handleShortcutMultiple (urlElementSelectorPairs) {
+function handleShortcutMultiple(urlElementSelectorPairs) {
   for (const pair of urlElementSelectorPairs) {
     if (handleShortcut(pair[0], pair[1])) break
   }
 }
 
-function switchTab (keyEvent) {
+function switchTab(keyEvent) {
   let tab_index = keyEvent.keyCode - 48 // make the keycode a zero-indexed value
   let tab = document.querySelector(`ul.nav-tabs li:nth-child(${tab_index})`)
   if (tab && tab.classList.contains('active') == false) {
-      tab.querySelector('a').click()
+    tab.querySelector('a').click()
   }
 }
 
 /**
  * @brief Switch to tab by index
  */
-Mousetrap.bind(['shift+1', 'shift+2', 'shift+3', 'shift+4'], function(e){
+Mousetrap.bind(['shift+1', 'shift+2', 'shift+3', 'shift+4'], function(e) {
   switchTab(e)
 })
 
@@ -73,7 +75,7 @@ Mousetrap.bind(['shift+1', 'shift+2', 'shift+3', 'shift+4'], function(e){
  * @brief Sets the focus on the sub search input on the issues and pull requests
  *        listing page
  */
-Mousetrap.bind('f', function () {
+Mousetrap.bind('f', function() {
   var filteredSearch = document.querySelector(
     "input[class='form-control filtered-search']"
   )
@@ -85,21 +87,21 @@ Mousetrap.bind('f', function () {
 /**
  * @brief Changes to bulk edit mode
  */
-Mousetrap.bind('shift+e', function () {
+Mousetrap.bind('shift+e', function() {
   handleShortcut(repoRegex, '.js-bulk-update-toggle')
 })
 
 /**
  * @brief Toggle the recent searches dropdown
  */
-Mousetrap.bind('shift+r', function(){
+Mousetrap.bind('shift+r', function() {
   clickElement('.filtered-search-history-dropdown-toggle-button')
 })
 
 /**
  * @brief Edit weight on issues
  */
-Mousetrap.bind('w', function(){
+Mousetrap.bind('w', function() {
   if (currentUrlMatches(issuePageRegex)) {
     clickElement('a.js-weight-edit-link')
   }
@@ -115,7 +117,7 @@ Mousetrap.bind('w', function(){
  * @param {Event} e
  */
 Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
-  function (e) {
+  function(e) {
     const contentList = document.querySelector('ul.content-list')
 
     if (contentList) {
@@ -126,17 +128,17 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
       if (selectedItem) {
         switch (e.key) {
           case 'k':
-            nextSelected = selectedItem.previousElementSibling != null
-              ? selectedItem.previousElementSibling : contentList.lastElementChild
+            nextSelected = selectedItem.previousElementSibling != null ?
+              selectedItem.previousElementSibling : contentList.lastElementChild
             break
           case 'j':
-            nextSelected = selectedItem.nextElementSibling != null
-              ? selectedItem.nextElementSibling : contentList.firstElementChild
+            nextSelected = selectedItem.nextElementSibling != null ?
+              selectedItem.nextElementSibling : contentList.firstElementChild
             break
           case 'o':
           case 'O':
             var target = e.shiftKey ? '_blank' : '_self'
-            var selector =  currentUrlMatches(mergeRequestRegex + '/commits') ? 'a.commit-row-message' : 'div.issuable-main-info a'
+            var selector = currentUrlMatches(mergeRequestRegex + '/commits') ? 'a.commit-row-message' : 'div.issuable-main-info a'
             var link = selectedItem.querySelector(selector)
             window.open(link.href, target)
             return
@@ -176,6 +178,6 @@ var helpContent = create_shortcut_help(shortcuts)
 /**
  * Show shortcuts
  */
-Mousetrap.bind('shift+h', function () {
+Mousetrap.bind('shift+h', function() {
   picoModal(helpContent).show()
 })
