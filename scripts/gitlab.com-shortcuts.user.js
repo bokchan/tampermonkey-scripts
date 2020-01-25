@@ -18,6 +18,7 @@
 
 const repoRegex = '(https?://gitlab.com/[^/]+/[^/]+)';
 const issuePageRegex = '(/issues/[0-9]+)'
+const issuePageListRegex = '(/issues(\\?scope=.+)?$)'
 const mergeRequestRegex = '/merge_requests/([0-9]+)'
 const mergeRequestListRegex = '/merge_requests(\\?scope=.+)?$'
 let mergeRequestCommitListRegex = '/merge_requests/[0-9]+/commits.*'
@@ -108,33 +109,49 @@ Mousetrap.bind('w', function() {
   }
 })
 
+function getlistSelectors() {
+  var ret = [null, null]
+  if (currentUrlMatches(issuePageListRegex)) {
+    ret = ['issue', 'div.issuable-main-info a']
+  } else if (currentUrlMatches(mergeRequestListRegex)) {
+    ret = ['merge-request', 'div.issuable-main-info a']
+  } else if (currentUrlMatches(mergeRequestCommitListRegex)) {
+    ret = ['commit', 'div.commit-content a']
+  }
+  return ret
+}
+
 /**
  * Navigate a list with shortcut keys
  *
  * 'j': select next item
  * 'k': select previous item
- * 'o': open the selected item in a new tab
+ * 'o': open the selected item in same tab
+ * 'shift+o': open the selected item in new tab
  *
  * @param {Event} e
  */
 Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
-  function(e) {
-    const contentList = document.querySelector('ul.content-list')
+  function (e) {
+    const [listItemType, linkSelector] = getlistSelectors()
+    console.log(listItemType, linkSelector)
+    let contentListItems = document.querySelectorAll(`ul.content-list li.${listItemType}`)
 
-    if (contentList) {
+    if (contentListItems) {
+      let nodeList = Array.from(contentListItems)
       var selectedItem = null
-      var nextSelected = contentList.firstElementChild
-      selectedItem = contentList.querySelector('li.selected-item')
-
+      var nextSelected = contentListItems[0]
+      selectedItem = document.querySelector('li.selected-item.active')
       if (selectedItem) {
+        let selectedItemIndex = nodeList.indexOf(selectedItem)
         switch (e.key) {
           case 'k':
-            nextSelected = selectedItem.previousElementSibling != null ?
-              selectedItem.previousElementSibling : contentList.lastElementChild
+            nextSelected = selectedItemIndex > 0 ?
+              nodeList[selectedItemIndex - 1] : nodeList[-1]
             break
           case 'j':
-            nextSelected = selectedItem.nextElementSibling != null ?
-              selectedItem.nextElementSibling : contentList.firstElementChild
+            nextSelected = selectedItemIndex < nodeList.length - 1 ?
+              nodeList[selectedItemIndex + 1] : nodeList[0]
             break
           case 'o':
           case 'O':
@@ -142,8 +159,7 @@ Mousetrap.bind(['j', 'k', 'o', 'shift+o'],
               store_merge_request_commits()
             }
             var target = e.shiftKey ? '_blank' : '_self'
-            var selector = currentUrlMatches(mergeRequestRegex + '/commits') ? 'a.commit-row-message' : 'div.issuable-main-info a'
-            var link = selectedItem.querySelector(selector)
+            var link = selectedItem.querySelector(linkSelector)
             window.open(link.href, target)
             return
           default:
