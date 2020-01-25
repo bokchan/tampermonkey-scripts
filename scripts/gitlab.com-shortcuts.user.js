@@ -89,7 +89,7 @@ Mousetrap.bind('f', function() {
 /**
  * @brief Changes to bulk edit mode
  */
-Mousetrap.bind('shift+e', function() {
+Mousetrap.bind('ctrl+shift+e', function() {
   handleShortcut(repoRegex, '.js-bulk-update-toggle')
 })
 
@@ -242,7 +242,7 @@ var shortcuts = [
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
-  ['Edit bulk', 'shift+e'],
+  ['Edit bulk', 'ctrl+shift+e'],
   ['Focus recent searches', 'shift+r'],
   ['Focus filtered search', 'f'],
   ['Select <code>prev/next</code> list item', 'k/j'],
