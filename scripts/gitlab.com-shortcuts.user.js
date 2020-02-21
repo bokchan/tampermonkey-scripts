@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         25.01.2020
-// @version      0.0.16
+// @date         21.02.2020
+// @version      0.0.17
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -236,6 +236,14 @@ Mousetrap.bind(['shift+w', 'shift+e'], function(e) {
   }
 })
 
+Mousetrap.bind('shift+a', function(e) {
+  let approve_btn = document.querySelector('.js-mr-approvals button')
+
+  if (currentUrlMatches(mergeRequestRegex) && approve_btn != null) {
+    approve_btn.click()
+  }
+})
+
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'w'],
@@ -247,7 +255,8 @@ var shortcuts = [
   ['Focus filtered search', 'f'],
   ['Select <code>prev/next</code> list item', 'k/j'],
   ['Open selected list item in <code>same/new</code> tab', 'o/shift+o'],
-  ['<b>Merge request commits</b>', ''],
+  ['<b>Merge requests</b>', ''],
+  ['Approve merge request', 'shift+a'],
   ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
 ]
 
