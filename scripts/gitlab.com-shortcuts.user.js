@@ -244,6 +244,19 @@ Mousetrap.bind('shift+a', function(e) {
   }
 })
 
+Mousetrap.bind("l", function(e) {
+  let file_holder = document.querySelector("article.file-holder")
+  if (file_holder != null  && currentUrlMatches(repoRegex + '/-/blob/')) {
+    let lines =  document.querySelectorAll('div.line-numbers a')
+    var line_no = parseInt( prompt(`goto line [1:${lines.length}]`))
+    if (isNaN(line_no)) {
+     alert('invalid input')
+    }else {
+        clickElement(`#L${line_no}`)
+    }
+  }
+})
+
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'w'],
@@ -258,6 +271,8 @@ var shortcuts = [
   ['<b>Merge requests</b>', ''],
   ['Approve merge request', 'shift+a'],
   ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
+  ['<b>File viewer</b>', ''],
+  ['Goto line', 'l'],
 ]
 
 var helpContent = create_shortcut_help(shortcuts)
