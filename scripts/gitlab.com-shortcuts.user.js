@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         28.05.2020
-// @version      0.0.19
+// @date         28.11.2020
+// @version      0.0.20
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -18,9 +18,9 @@
 
 const repoRegex = '(https?://gitlab.com/[^/]+/[^/]+)';
 const issuePageRegex = '(/issues/[0-9]+)'
-const issuePageListRegex = '(/issues(\\?scope=.+)?$)'
+const issuePageListRegex = '/issues(\\?(scope|state)=.+)?'
 const mergeRequestRegex = '/merge_requests/([0-9]+)'
-const mergeRequestListRegex = '/merge_requests(\\?scope=.+)?$'
+const mergeRequestListRegex = '/merge_requests(\\?(scope|state)=.+)?'
 let mergeRequestCommitListRegex = '/merge_requests/[0-9]+/commits.*'
 const repoUrl = window.location.href.match(repoRegex)
 
