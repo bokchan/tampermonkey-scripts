@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         28.11.2020
-// @version      0.0.20
+// @date         29.11.2020
+// @version      0.0.21
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -257,6 +257,17 @@ Mousetrap.bind("l", function(e) {
   }
 })
 
+Mousetrap.bind(["p", "n"], function(e) {
+  let page_link_prev = document.querySelector(".js-previous-button.page-item > a")
+  let page_link_next = document.querySelector(".js-next-button.page-item > a")
+  if (page_link_prev && e.key == "p") {
+      page_link_prev.click()
+  }
+  if (page_link_next && e.key == "n") {
+      page_link_next.click()
+  }
+})
+
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'w'],
@@ -268,6 +279,7 @@ var shortcuts = [
   ['Focus filtered search', 'f'],
   ['Select <code>prev/next</code> list item', 'k/j'],
   ['Open selected list item in <code>same/new</code> tab', 'o/shift+o'],
+  ['Goto (p)rev/(n)ext page', 'p/n'],
   ['<b>Merge requests</b>', ''],
   ['Approve merge request', 'ctrl+shift+a'],
   ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
