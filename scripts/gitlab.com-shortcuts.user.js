@@ -103,9 +103,11 @@ Mousetrap.bind('shift+r', function() {
 /**
  * @brief Edit weight on issues
  */
-Mousetrap.bind('w', function() {
+Mousetrap.bind('alt+w', function() {
   if (currentUrlMatches(issuePageRegex)) {
     clickElement('a.js-weight-edit-link')
+    let sidebar_weight_block = document.querySelector('div.block.weight > div:nth-child(3)')
+    sidebar_weight_block.style.display = 'block'
   }
 })
 
@@ -270,7 +272,7 @@ Mousetrap.bind(["p", "n"], function(e) {
 
 var shortcuts = [
   ['<b>Issue page</b>', ''],
-  ['Edit weight', 'w'],
+  ['Edit weight', 'alt+w'],
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
