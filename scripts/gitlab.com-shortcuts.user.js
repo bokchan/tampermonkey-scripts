@@ -5,7 +5,7 @@
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
 // @date         05.12.2020
-// @version      0.0.22
+// @version      0.0.23
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
