@@ -111,6 +111,16 @@ Mousetrap.bind('alt+w', function() {
   }
 })
 
+/**
+ * @brief Edit milestone on issues
+ */
+Mousetrap.bind('m', function() {
+  if (currentUrlMatches(issuePageListRegex)) {
+    document.querySelector('div.block.milestone > div.value').style.display = 'none'
+    document.querySelector('div.block.milestone > div.selectbox').style.display = 'block'
+  }
+})
+
 function getlistSelectors() {
   var ret = [null, null]
   if (currentUrlMatches(issuePageListRegex)) {
@@ -273,6 +283,7 @@ Mousetrap.bind(["p", "n"], function(e) {
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'alt+w'],
+  ['Edit milestone', 'm'],
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
@@ -285,6 +296,7 @@ var shortcuts = [
   ['<b>Merge requests</b>', ''],
   ['Approve merge request', 'ctrl+shift+a'],
   ['Navigate to <code>prev/next</code> commit', 'shift+w/shift+e'],
+  ['Edit milestone', 'm'],
   ['<b>File viewer</b>', ''],
   ['Goto line', 'l'],
 ]
