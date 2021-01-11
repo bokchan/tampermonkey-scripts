@@ -280,6 +280,12 @@ Mousetrap.bind(["p", "n"], function(e) {
   }
 })
 
+Mousetrap.bind(["alt+shift+c"], function(e) {
+  if (currentUrlMatches(repoRegex)) {
+    window.open(repoUrl[0] + "/-/pipelines", '_self')
+  }
+})
+
 var shortcuts = [
   ['<b>Issue page</b>', ''],
   ['Edit weight', 'alt+w'],
@@ -299,6 +305,8 @@ var shortcuts = [
   ['Edit milestone', 'm'],
   ['<b>File viewer</b>', ''],
   ['Goto line', 'l'],
+  ['<b>Any page in repo</b>', ''],
+  ['Goto CI/CD pipelines', "alt+shift+c"]
 ]
 
 var helpContent = create_shortcut_help(shortcuts)
