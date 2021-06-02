@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         11.01.2021
-// @version      0.0.24
+// @date         02.06.2021
+// @version      0.0.25
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
