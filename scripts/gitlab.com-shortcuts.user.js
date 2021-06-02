@@ -101,23 +101,29 @@ Mousetrap.bind('shift+r', function() {
 })
 
 /**
- * @brief Edit weight on issues
+ * @brief Sidebar shortcuts on issues
  */
-Mousetrap.bind('alt+w', function() {
-  if (currentUrlMatches(issuePageRegex)) {
-    clickElement('a.js-weight-edit-link')
-    let sidebar_weight_block = document.querySelector('div.block.weight > div:nth-child(3)')
-    sidebar_weight_block.style.display = 'block'
-  }
-})
-
-/**
- * @brief Edit milestone on issues
- */
-Mousetrap.bind('m', function() {
+Mousetrap.bind(['E', 'alt+w', 'alt+i'], function(e) {
   if (currentUrlMatches(issuePageListRegex)) {
-    document.querySelector('div.block.milestone > div.value').style.display = 'none'
-    document.querySelector('div.block.milestone > div.selectbox').style.display = 'block'
+    switch (e.key) {
+      case 'E':
+        clickElement("div[data-testid='epic-edit'] button[data-testid='edit-button']");
+        break;
+      case 'i':
+        if (e.altKey) {
+          clickElement("div[data-testid='iteration-edit-link'] button[data-testid='edit-button']")
+        }
+        break;
+      case 'w' :
+        if (e.altKey ) {
+          clickElement('a.js-weight-edit-link')
+          var sidebar_weight_block = document.querySelector('div.block.weight > div:nth-child(3)');
+          sidebar_weight_block.style.display = 'block';
+        }
+        break;
+      default:
+        break;
+    }
   }
 })
 
@@ -288,8 +294,9 @@ Mousetrap.bind(["alt+shift+c"], function(e) {
 
 var shortcuts = [
   ['<b>Issue page</b>', ''],
-  ['Edit weight', 'alt+w'],
-  ['Edit milestone', 'm'],
+  ['Edit Weight', 'alt+w'],
+  ['Edit Epic', 'shift+e'],
+  ['Edit Iteration', 'alt+i'],
   ['<b>Pages with tabs</b>', ''],
   ['Switch tab', 'shift+[tab number]'],
   ['<b>List views page</b>', ''],
