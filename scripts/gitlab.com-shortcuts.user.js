@@ -60,7 +60,7 @@ function handleShortcutMultiple(urlElementSelectorPairs) {
 
 function switchTab(keyEvent) {
   let tab_index = keyEvent.keyCode - 48 // make the keycode a zero-indexed value
-  let tab = document.querySelector(`ul.nav-tabs li:nth-child(${tab_index})`)
+  let tab = document.querySelector(`ul.gl-tabs-nav li:nth-child(${tab_index})`)
   if (tab && tab.classList.contains('active') == false) {
     tab.querySelector('a').click()
   }
