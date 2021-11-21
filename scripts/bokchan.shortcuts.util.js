@@ -9,7 +9,7 @@ function create_shortcut_help(shortcuts) {
   'use strict'
   var helpContentStyle = '<style type="text/css">#modal_header{font-weight: bold;}.modal_divider{width: 20px;}</style>';
 
-  var helpContent = helpContentStyle + '<div><table id="modal_table"><thead id="modal_header"><tr><td>shortcut</td><td class="modal_divider"></td><td>description</td></tr></thead>';
+  var helpContent = helpContentStyle + '<div style="background=gray"><table id="modal_table"><thead id="modal_header"><tr><td>shortcut</td><td class="modal_divider"></td><td>description</td></tr></thead>';
   shortcuts.forEach(function (e) {
     helpContent = helpContent + '<tr><td><code>' + e[1] + '</code></td>' +
       '<td class="modal_divider"></td>' +
