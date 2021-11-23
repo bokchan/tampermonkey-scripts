@@ -4,8 +4,8 @@
 // @license      GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author       Andreas Bok Andersen
 // @description  Github custom shortcuts
-// @date         21.11.2021
-// @version      0.0.26
+// @date         23.11.2021
+// @version      0.0.27
 // @match        https://*.gitlab.com/*
 // @downloadURL  https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/gitlab.com-shortcuts.user.js
 // @homepageURL  https://github.com/bokchan/tampermonkey-scripts
@@ -60,7 +60,7 @@ function handleShortcutMultiple(urlElementSelectorPairs) {
 
 function switchTab(keyEvent) {
   let tab_index = keyEvent.keyCode - 48 // make the keycode a zero-indexed value
-  let tab = document.querySelector(`ul.gl-tabs-nav li:nth-child(${tab_index})`)
+  let tab = document.querySelector("ul.gl-tabs-nav,ul.nav-tabs").querySelector(`li:nth-child(${tab_index})`)
   if (tab && tab.classList.contains('active') == false) {
     tab.querySelector('a').click()
   }
