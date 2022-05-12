@@ -1,0 +1,10 @@
+[tool]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.27"
+tag_format = "@version"
+version_files = [
+    "scripts/gitlab.com-shortcuts.user.js",
+    "scripts/gitlab.com-shortcuts.meta.js"
+]
