@@ -81,6 +81,7 @@ Mousetrap.bind('f', function() {
   var filteredSearch = document.querySelector(
     "input[class='form-control filtered-search']"
   )
+    "input[class='form-control filtered-search'],input.gl-filtered-search-term-input"
   if (filteredSearch != null) {
     filteredSearch.focus()
   }
