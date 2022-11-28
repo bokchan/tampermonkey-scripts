@@ -353,6 +353,7 @@ var shortcuts = [
   ["<b>Merge requests</b>", ""],
   ["Edit merge commit message", "ctrl+m"],
   ["Navigate to <code>prev/next</code> commit", "shift+w/shift+e"],
+  ["Submit review", "ctrl+meta+s"],
   ["Edit milestone", "m"],
   ["<b>File viewer</b>", ""],
   ["Goto line", "l"],
