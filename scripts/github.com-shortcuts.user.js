@@ -34,6 +34,21 @@ function is_same_url ( url_suffix )
 
 
 /**
+ * Util function to navigate to a pull request tab from any PR sub-page.
+ *
+ * @param      {string}     tab_suffix  PR tab suffix (e.g. '', '/commits').
+ */
+function goto_pr_tab ( tab_suffix )
+{
+    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
+    if ( repo_url && pr_url )
+    {
+        window.location.href = repo_url[0] + pr_url[0] + tab_suffix;
+    }
+}
+
+
+/**
  * @brief Shortcut for navigating to the list of milestones
  */
 Mousetrap.bind('g m', function(){
@@ -87,14 +102,10 @@ Mousetrap.bind('g shift+c', function(){
 
 
 /**
- * @brief Shortcut for the list of commits for a pull request
+ * @brief Shortcut for navigating to the PR "Commits" tab
  */
 Mousetrap.bind('shift+2', function(){
-    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
-    if (pr_url )
-    {
-        window.location.href = repo_url[0] + pr_url[0] + '/commits';
-    }
+    goto_pr_tab('/commits');
 });
 
 
@@ -159,11 +170,15 @@ Mousetrap.bind('o p', function(){
  */
 
 Mousetrap.bind('shift+1', function(){
-    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
-    if (pr_url)
-    {
-        window.location.href = repo_url[0] + pr_url[0];
-    }
+    goto_pr_tab('');
+});
+
+
+/**
+ * @brief Shortcut for navigating to the PR "Checks" tab
+ */
+Mousetrap.bind('shift+3', function(){
+    goto_pr_tab('/checks');
 });
 
 
@@ -171,11 +186,7 @@ Mousetrap.bind('shift+1', function(){
  * @brief Shortcut for navigating to the PR "Files changed" tab
  */
 Mousetrap.bind('shift+4', function(){
-    const pr_url = window.location.href.match('(/pull\/[0-9]+)');
-    if (pr_url)
-    {
-        window.location.href = repo_url[0] + pr_url[0] + '/files';
-    }
+    goto_pr_tab('/files');
 });
 
 
@@ -200,13 +211,14 @@ var shortcuts = [
 ['toggle closed/open milestone issues', 'shift+m'],
 ['list releases', 'g r'],
 ['list closed pull requests', 'g shift+c'],
-['list commits on PR', 'shift+2'],
+['goto PR "Conversations" tab', 'shift+1'],
+['goto PR "Commits" tab', 'shift+2'],
+['goto PR "Checks" tab', 'shift+3'],
+['goto PR "Files changed" tab', 'shift+4'],
 ['expand outdated PR comments', 'o e'],
 ['collapse outdated PR comments', 'o c'],
 ['goto next page', 'o n'],
 ['goto next previous', 'o p'],
-['goto PR "Conversations" tab', 'shift+1'],
-['goto PR "Files changed"', 'shift+4'],
 ['focus on sub search field on PR and Issues listing', 'ctrl ctrl']
 ];
 
