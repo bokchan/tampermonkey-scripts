@@ -16,7 +16,7 @@
 // @require      https://raw.githubusercontent.com/bokchan/tampermonkey-scripts/master/scripts/bokchan.shortcuts.util.js
 // ==/UserScript==
 
-const github_repo_regex = '(https?://github.com/[a-z0-9-]+\/[a-z0-9-]+)';
+const github_repo_regex = '(https://github.com/[A-Za-z0-9-]+\/[A-Za-z0-9-]+)';
 const repo_url = window.location.href.match(github_repo_regex);
 
 
